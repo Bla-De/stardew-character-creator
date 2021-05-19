@@ -68,23 +68,23 @@
     accInput = document.getElementById("accInput");
 
     document.getElementById('skin').addEventListener('changed', function (e) {
-        skinInput.value = iconSelect.skinSelect();
+        skinInput.value = iconSelect.getSelectedValue();
     });
 
     document.getElementById('hair').addEventListener('changed', function (e) {
-        hairInput.value = hairSelect.skinSelect();
+        hairInput.value = hairSelect.getSelectedValue();
     });
 
     document.getElementById('shirt').addEventListener('changed', function (e) {
-        shirtInput.value = shirtSelect.skinSelect();
+        shirtInput.value = shirtSelect.getSelectedValue();
     });
 
     document.getElementById('pants').addEventListener('changed', function (e) {
-        pantsInput.value = pantsSelect.skinSelect();
+        pantsInput.value = pantsSelect.getSelectedValue();
     });
 
     document.getElementById('accessory').addEventListener('changed', function (e) {
-        accInput.value = accSelect.skinSelect();
+        accInput.value = accSelect.getSelectedValue();
     });
 
     skinSelect = new IconSelect("skin");
