@@ -335,9 +335,6 @@ function checkValue(sender) {
 
     function populateIcons(filePath,number) {
         var icons = [];
-        folder = Folder("images/" + category);
-        files = folder.getFiles();
-        count = files.length;
         for (i = 0; i < number; i++) {
             icons.push({ 'iconFilePath': filePath + (i + 1).toString() + '.png', 'iconValue': (i + 1).toString() });
         }
