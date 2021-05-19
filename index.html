@@ -67,8 +67,23 @@
     pantsInput = document.getElementById("pantsInput");
     accInput = document.getElementById("accInput");
 
+    skinSelect = new IconSelect("skin");
+    skinSelect.refresh(populateIcons("images/skin/", 24));
+
+    hairSelect = new IconSelect("hair");
+    hairSelect.refresh(populateIcons("images/hair/", 79));
+
+    shirtSelect = new IconSelect("shirt");
+    shirtSelect.refresh(populateIcons("images/shirt/", 112));
+
+    pantsSelect = new IconSelect("pants");
+    pantsSelect.refresh(populateIcons("images/pants/", 4));
+
+    accSelect = new IconSelect("accessory");
+    accSelect.refresh(populateIcons("images/accessory/", 20));
+
     document.getElementById('skin').addEventListener('changed', function (e) {
-        skinInput.value = iconSelect.getSelectedValue();
+        skinInput.value = skinSelect.getSelectedValue();
     });
 
     document.getElementById('hair').addEventListener('changed', function (e) {
@@ -86,21 +101,6 @@
     document.getElementById('accessory').addEventListener('changed', function (e) {
         accInput.value = accSelect.getSelectedValue();
     });
-
-    skinSelect = new IconSelect("skin");
-    skinSelect.refresh(populateIcons("images/skin/", 24));
-
-    hairSelect = new IconSelect("hair");
-    hairSelect.refresh(populateIcons("images/hair/", 79));
-
-    shirtSelect = new IconSelect("shirt");
-    shirtSelect.refresh(populateIcons("images/shirt/", 112));
-
-    pantsSelect = new IconSelect("pants");
-    pantsSelect.refresh(populateIcons("images/pants/", 4));
-
-    accSelect = new IconSelect("accessory");
-    accSelect.refresh(populateIcons("images/accessory/", 20));
 
 var male_base = new Image();
 male_base.crossOrigin = 'anonymous';
