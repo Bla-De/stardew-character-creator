@@ -55,6 +55,38 @@
     var pantsSelect;
     var accSelect;
 
+    var skinInput;
+    var hairInput;
+    var shirtInput;
+    var pantsInput;
+    var accInput;
+
+    skinInput = document.getElementById("skinInput");
+    hairInput = document.getElementById("hairInput");
+    shirtInput = document.getElementById("shirtInput");
+    pantsInput = document.getElementById("pantsInput");
+    accInput = document.getElementById("accInput");
+
+    document.getElementById('skin').addEventListener('changed', function (e) {
+        skinInput.value = iconSelect.skinSelect();
+    });
+
+    document.getElementById('hair').addEventListener('changed', function (e) {
+        hairInput.value = hairSelect.skinSelect();
+    });
+
+    document.getElementById('shirt').addEventListener('changed', function (e) {
+        shirtInput.value = shirtSelect.skinSelect();
+    });
+
+    document.getElementById('pants').addEventListener('changed', function (e) {
+        pantsInput.value = pantsSelect.skinSelect();
+    });
+
+    document.getElementById('accessory').addEventListener('changed', function (e) {
+        accInput.value = accSelect.skinSelect();
+    });
+
     skinSelect = new IconSelect("skin");
     skinSelect.refresh(populateIcons("images/skin/", 24));
 
