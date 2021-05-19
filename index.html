@@ -27,15 +27,15 @@
           <label for="pant_col">Pants color</label>
           <input name="pant_col" id="pant_col" type="color" value="#2e55b7">
           <label for="skin">Skin</label>
-          <div id="skin" />
+          <div id="skin"></div>
           <label for="hair">Hair</label>
-          <div id="hair" />
+          <div id="hair"></div>
           <label for="shirt">Shirt</label>
-          <div id="shirt" />
+          <div id="shirt"></div>
           <label for="pants">Pants</label>
-          <div id="pants" />
+          <div id="pants"></div>
           <label for="accessory">Accessory</label>
-          <div id="accessory" />
+          <div id="accessory"></div>
           <button id="copy">Copy to clipboard</button>
           <p><a href="https://github.com/robopossum/stardew-character-creator">Source</a></p>
           <p><a href="https://github.com/robopossum/stardew-character-creator/issues">Submit a bug</a></p>
@@ -78,7 +78,7 @@ document.getElementById('skin').addEventListener('change', (e) => {
   const imgData = skinCtx.getImageData(0, 0, skinCanvas.width, skinCanvas.height);
   const data = imgData.data;
   const prevOffset = skIndex * 12;
-  skIndex = e.target.value - 1;
+    skIndex = e.target.getSelectedValue() - 1;
   const newOffset = skIndex * 12;
   for (var i = 0; i < 12; i += 4) {
     replaceColor(
@@ -108,14 +108,14 @@ pants.onload = function () {
 };
 document.getElementById('pant_col').addEventListener('change', (e) => {
   pantsCtx.clearRect(0, 0, 256, 256);
-  const index = document.getElementById('pant').value - 1;
+    const index = document.getElementById('pant').getSelectedValue() - 1;
   const xOffset = index * 192;
   pantsCtx.drawImage(pants, xOffset, 0, 16, 32, 64, 0, 128, 256);
   tint(pantsCtx, e.target.value);
 });
 document.getElementById('pants').addEventListener('change', (e) => {
   pantsCtx.clearRect(0, 0, 256, 256);
-  const index = e.target.value - 1;
+    const index = e.target.getSelectedValue() - 1;
   const xOffset = index * 192;
   pantsCtx.drawImage(pants, xOffset, 0, 16, 32, 64, 0, 128, 256);
   tint(pantsCtx, document.getElementById('pant_col').value);
@@ -135,7 +135,7 @@ shirt.onload = function () {
 var shirtCols = [[142, 31, 12], [112, 23, 24], [74, 12, 6]];
 document.getElementById('shirt').addEventListener('change', (e) => {
   shirtCtx.clearRect(0, 0, 256, 256);
-  const index = e.target.value - 1;
+    const index = e.target.getSelectedValue() - 1;
   const xOffset = (index % 16) * 8;
   const yOffset = parseInt(index / 16) * 32;
   shirtCtx.drawImage(shirt, xOffset, yOffset, 8, 8, 96, 120, 64, 64);
@@ -198,7 +198,7 @@ hair.onload = function () {
 document.getElementById('hair_col').addEventListener('change', (e) => {
   hairCtx.clearRect(0, 0, 256, 256);
   var fancy = false;
-  var index = document.getElementById('hair').value - 1;
+    var index = document.getElementById('hair').getSelectedValue() - 1;
   if (index > 55) {
     index = index - 56;
     fancy = true;
@@ -211,7 +211,7 @@ document.getElementById('hair_col').addEventListener('change', (e) => {
 document.getElementById('hair').addEventListener('change', (e) => {
   hairCtx.clearRect(0, 0, 256, 256);
   var fancy = false;
-  var index = e.target.value - 1;
+    var index = e.target.getSelectedValue() - 1;
   if (index > 55) {
     index = index - 56;
     fancy = true;
@@ -232,7 +232,7 @@ accessoryCtx.webkitImageSmoothingEnabled = false;
 accessoryCtx.msImageSmoothingEnabled = false;
 document.getElementById('accessory').addEventListener('change', (e) => {
   accessoryCtx.clearRect(0, 0, 256, 256);
-  const index = e.target.value - 2;
+    const index = e.target.getSelectedValue() - 2;
   if (index < 0) {
     return;
   }
