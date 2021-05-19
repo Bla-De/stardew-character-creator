@@ -113,7 +113,7 @@ document.getElementById('pant_col').addEventListener('change', (e) => {
   pantsCtx.drawImage(pants, xOffset, 0, 16, 32, 64, 0, 128, 256);
   tint(pantsCtx, e.target.value);
 });
-document.getElementById('pant').addEventListener('change', (e) => {
+document.getElementById('pants').addEventListener('change', (e) => {
   pantsCtx.clearRect(0, 0, 256, 256);
   const index = e.target.value - 1;
   const xOffset = index * 192;
