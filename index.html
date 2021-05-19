@@ -42,6 +42,14 @@
       </div>
     </div>
 <script>
+
+
+    var skinSelect;
+    var hairSelect;
+    var shirtSelect;
+    var pantsSelect;
+    var accSelect;
+
 var male_base = new Image();
 male_base.crossOrigin = 'anonymous';
 male_base.src = './farmer_base.png';
@@ -74,7 +82,7 @@ skin.onload = function () {
   skinCtx.drawImage(skin, 0, 0);
 };
 var skIndex = 0;
-document.getElementById('skin').addEventListener('change', (e) => {
+    skinSelect.addEventListener('change', (e) => {
   const imgData = skinCtx.getImageData(0, 0, skinCanvas.width, skinCanvas.height);
   const data = imgData.data;
   const prevOffset = skIndex * 12;
@@ -243,12 +251,6 @@ document.getElementById('accessory').addEventListener('change', (e) => {
     tint(accessoryCtx, document.getElementById('hair_col').value);
   }
 });
-
-    var skinSelect;
-    var hairSelect;
-    var shirtSelect;
-    var pantsSelect;
-    var accSelect;
 
 document.getElementById('copy').addEventListener('click', () => {
   const vals = [
