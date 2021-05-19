@@ -244,13 +244,19 @@ document.getElementById('accessory').addEventListener('change', (e) => {
   }
 });
 
+    var skinSelect;
+    var hairSelect;
+    var shirtSelect;
+    var pantsSelect;
+    var accSelect;
+
 document.getElementById('copy').addEventListener('click', () => {
   const vals = [
-      document.getElementById('skin').getSelectedValue(),
-      document.getElementById('hair').getSelectedValue(),
-      document.getElementById('shirt').getSelectedValue(),
-      document.getElementById('pants').getSelectedValue(),
-      document.getElementById('accessory').getSelectedValue()
+      skinSelect.getSelectedValue(),
+      hairSelect.getSelectedValue(),
+      shirtSelect.getSelectedValue(),
+      pantsSelect.getSelectedValue(),
+      accSelect.getSelectedValue()
   ];
   const eye_col = document.getElementById('eye_col').value;
   vals.push(...rgb2hsv(
@@ -273,12 +279,6 @@ document.getElementById('copy').addEventListener('click', () => {
   vals.push(1);
   navigator.clipboard.writeText(vals.join());
 });
-
-    var skinSelect;
-    var hairSelect;
-    var shirtSelect;
-    var pantsSelect;
-    var accSelect;
 
 function tint(ctx, hex) {
   const r = parseInt("0x" + hex.slice(1,3));
