@@ -97,7 +97,7 @@ skin.onload = function () {
   skinCtx.drawImage(skin, 0, 0);
 };
 var skIndex = 0;
-document.getElementById('skin').addEventListener('change', (e) => {
+    skinSelect.addEventListener('change', (e) => {
   const imgData = skinCtx.getImageData(0, 0, skinCanvas.width, skinCanvas.height);
   const data = imgData.data;
   const prevOffset = skIndex * 12;
