@@ -84,22 +84,27 @@
 
     document.getElementById('skin').addEventListener('changed', function (e) {
         skinInput.value = skinSelect.getSelectedValue();
+        skinInput.dispatchEvent(new Event("change"))
     });
 
     document.getElementById('hair').addEventListener('changed', function (e) {
         hairInput.value = hairSelect.getSelectedValue();
+        hairInput.dispatchEvent(new Event("change"))
     });
 
     document.getElementById('shirt').addEventListener('changed', function (e) {
         shirtInput.value = shirtSelect.getSelectedValue();
+        shirtInput.dispatchEvent(new Event("change"))
     });
 
     document.getElementById('pants').addEventListener('changed', function (e) {
         pantsInput.value = pantsSelect.getSelectedValue();
+        pantsInput.dispatchEvent(new Event("change"))
     });
 
     document.getElementById('accessory').addEventListener('changed', function (e) {
         accInput.value = accSelect.getSelectedValue();
+        accInput.dispatchEvent(new Event("change"))
     });
 
 var male_base = new Image();
