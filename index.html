@@ -26,25 +26,24 @@
           <input name="hair_col" id="hair_col" type="color" value="#c15b32">
           <label for="pant_col">Pants color</label>
           <input name="pant_col" id="pant_col" type="color" value="#2e55b7">
+          <br />
           <label for="skin">Skin</label>
           <div id="skin"></div>
-          <input type="number" name="skinInput" id="skinInput" value="1" min="1" max="24" oninput="checkValue(this);">
           <br />
           <label for="hair">Hair</label>
           <div id="hair"></div>
-          <input type="number" name="hairInput" id="hairInput" value="1" min="1" max="74" oninput="checkValue(this);">
           <br />
           <label for="shirt">Shirt</label>
           <div id="shirt"></div>
-          <input type="number" name="shirtInput" id="shirtInput" value="1" min="1" max="112" oninput="checkValue(this);">
           <br />
           <label for="pants">Pants</label>
           <div id="pants"></div>
-          <input type="number" name="pantsInput" id="pantsInput" value="1" min="1" max="4" oninput="checkValue(this);">
           <br />
           <label for="accessory">Accessory</label>
           <div id="accessory"></div>
-          <input type="number" name="accessoryInput" id="accessoryInput" value="1" min="1" max="20" oninput="checkValue(this);">
+          <br />
+          <label for="pet">Pet</label>
+          <div id="pet"></div>
           <br />
           <button id="copy">Copy to clipboard</button>
           <p><a href="https://github.com/robopossum/stardew-character-creator">Source</a></p>
@@ -59,24 +58,27 @@
     var shirtSelect;
     var pantsSelect;
     var accSelect;
+	var petSelect;
 
     var skinInput;
     var hairInput;
     var shirtInput;
     var pantsInput;
     var accInput;
+	var petInput;
 
     skinInput = document.getElementById("skinInput");
     hairInput = document.getElementById("hairInput");
     shirtInput = document.getElementById("shirtInput");
     pantsInput = document.getElementById("pantsInput");
     accInput = document.getElementById("accessoryInput");
+    petInput = document.getElementById("petInput");
 
     skinSelect = new IconSelect("skin");
     skinSelect.refresh(populateIcons("images/skin/", 24));
 
     hairSelect = new IconSelect("hair");
-    hairSelect.refresh(populateIcons("images/hair/", 79));
+    hairSelect.refresh(populateIcons("images/hair/", 74));
 
     shirtSelect = new IconSelect("shirt");
     shirtSelect.refresh(populateIcons("images/shirt/", 112));
@@ -86,6 +88,9 @@
 
     accSelect = new IconSelect("accessory");
     accSelect.refresh(populateIcons("images/accessory/", 20));
+
+    accSelect = new IconSelect("pet");
+    accSelect.refresh(populateIcons("images/pet/", 6));
 
     document.getElementById('skin').addEventListener('changed', function (e) {
         skinInput.value = skinSelect.getSelectedValue();
@@ -110,6 +115,11 @@
     document.getElementById('accessory').addEventListener('changed', function (e) {
         accInput.value = accSelect.getSelectedValue();
         accInput.dispatchEvent(new Event("change"))
+    });
+
+    document.getElementById('pet').addEventListener('changed', function (e) {
+        petInput.value = petSelect.getSelectedValue();
+        petInput.dispatchEvent(new Event("change"))
     });
 
 var male_base = new Image();
@@ -340,7 +350,7 @@ document.getElementById('copy').addEventListener('click', () => {
     parseInt("0x" + pant_col.slice(3,5)) / 255,
     parseInt("0x" + pant_col.slice(5,7)) / 255
   ));
-  vals.push(1);
+  vals.push(petSelect.getSelectedValue());
   navigator.clipboard.writeText(vals.join());
 });
 
@@ -395,6 +405,8 @@ function checkValue(sender) {
     } else if (value < min) {
         sender.value = min;
     }
+	
+	
 }
 
     function populateIcons(filePath,number) {
