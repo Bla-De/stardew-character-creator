@@ -29,27 +29,27 @@
           <br />
           <label for="skin">Skin</label>
           <div id="skin"></div>
-          <input type="number" name="skinInput" id="skinInput" value="1" min="1" max="24" oninput="checkValue(this);" readonly>
+          <input type="number" name="skinInput" id="skinInput" value="1" min="1" max="24" oninput="checkValue(this);">
           <br />
           <label for="hair">Hair</label>
           <div id="hair"></div>
-          <input type="number" name="hairInput" id="hairInput" value="1" min="1" max="74" oninput="checkValue(this);" readonly>
+          <input type="number" name="hairInput" id="hairInput" value="1" min="1" max="74" oninput="checkValue(this);">
           <br />
           <label for="shirt">Shirt</label>
           <div id="shirt"></div>
-          <input type="number" name="shirtInput" id="shirtInput" value="1" min="1" max="112" oninput="checkValue(this);" readonly>
+          <input type="number" name="shirtInput" id="shirtInput" value="1" min="1" max="112" oninput="checkValue(this);">
           <br />
           <label for="pants">Pants</label>
           <div id="pants"></div>
-          <input type="number" name="pantsInput" id="pantsInput" value="1" min="1" max="4" oninput="checkValue(this);" readonly>
+          <input type="number" name="pantsInput" id="pantsInput" value="1" min="1" max="4" oninput="checkValue(this);">
           <br />
           <label for="accessory">Accessory</label>
           <div id="accessory"></div>
-          <input type="number" name="accessoryInput" id="accessoryInput" value="1" min="1" max="20" oninput="checkValue(this);" readonly>
+          <input type="number" name="accessoryInput" id="accessoryInput" value="1" min="1" max="20" oninput="checkValue(this);">
           <br />
           <label for="pet">Pet</label>
           <div id="pet"></div>
-          <input type="number" name="petInput" id="petInput" value="1" min="1" max="6" oninput="checkValue(this);" readonly>
+          <input type="number" name="petInput" id="petInput" value="1" min="1" max="6" oninput="checkValue(this);">
           <br />
           <button id="copy">Copy to clipboard</button>
           <p><a href="https://github.com/robopossum/stardew-character-creator">Source</a></p>
@@ -332,11 +332,11 @@ document.getElementById('accessoryInput').addEventListener('change', (e) => {
 
 document.getElementById('copy').addEventListener('click', () => {
   const vals = [
-      skinSelect.getSelectedValue(),
-      hairSelect.getSelectedValue(),
-      shirtSelect.getSelectedValue(),
-      pantsSelect.getSelectedValue(),
-      accSelect.getSelectedValue()
+      skinInput.value,
+      hairInput.value,
+      shirtInput.value,
+      pantsInput.value,
+      accInput.value
   ];
   const eye_col = document.getElementById('eye_col').value;
   vals.push(...rgb2hsv(
@@ -356,7 +356,7 @@ document.getElementById('copy').addEventListener('click', () => {
     parseInt("0x" + pant_col.slice(3,5)) / 255,
     parseInt("0x" + pant_col.slice(5,7)) / 255
   ));
-  vals.push(petSelect.getSelectedValue());
+  vals.push(petInput.value);
   navigator.clipboard.writeText(vals.join());
 });
 
