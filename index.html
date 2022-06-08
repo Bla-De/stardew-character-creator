@@ -21,8 +21,8 @@
       </div>
       <div id="inputs" style="flex-grow: 1; padding: 25px">
 		  <label for="version">Version</label>
-		  <input type="radio" name="version" id="1.5" value="1.5" checked="checked" onchange="loadPage();">1.5</input>
-		  <input type="radio" name="version" id="1.4" value="1.4" onchange="loadPage();">1.4</input>
+		  <input type="radio" name="version" id="1.5" value="1.5" checked="checked" onchange="changeVersion();">1.5</input>
+		  <input type="radio" name="version" id="1.4" value="1.4" onchange="changeVersion();">1.4</input>
 		  <br />
           <label for="eye_col">Eye color</label>
           <input name="eye_col" id="eye_col" type="color" value="#7a4434">
@@ -90,6 +90,18 @@
     pantsSelect = new IconSelect("pants");
     accSelect = new IconSelect("accessory");
     petSelect = new IconSelect("pet");
+	
+	skinSelect.refresh(populateIcons("images/skin/", 24));
+	
+	hairSelect.refresh(populateIcons("images/hair/", 74));
+
+	shirtSelect.refresh(populateIcons("images/shirt/", 112));
+
+	pantsSelect.refresh(populateIcons("images/pants/", 4));
+
+	accSelect.refresh(populateIcons("images/accessory/", 20));
+
+	petSelect.refresh(populateIcons("images/pet/", 6));
 
     document.getElementById('skin').addEventListener('changed', function (e) {
         skinInput.value = skinSelect.getSelectedValue();
@@ -120,8 +132,6 @@
         petInput.value = petSelect.getSelectedValue();
         petInput.dispatchEvent(new Event("change"))
     });
-	
-	loadPage();
 
 var male_base = new Image();
 male_base.crossOrigin = 'anonymous';
@@ -419,8 +429,7 @@ function checkValue(sender) {
         return icons;
     }
 
-   function loadPage() {
-		skinSelect.refresh(populateIcons("images/skin/", 24));
+   function changeVersion() {
 		
 		if (document.getElementById("1.5").checked){
 			hairSelect.setSelectedIndex(0);
@@ -429,14 +438,6 @@ function checkValue(sender) {
 			hairSelect.setSelectedIndex(0);
 			hairSelect.refresh(populateIcons("images/hair/", 56));
 		}
-
-		shirtSelect.refresh(populateIcons("images/shirt/", 112));
-
-		pantsSelect.refresh(populateIcons("images/pants/", 4));
-
-		accSelect.refresh(populateIcons("images/accessory/", 20));
-
-		petSelect.refresh(populateIcons("images/pet/", 6));
     }
 
 
