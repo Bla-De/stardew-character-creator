@@ -95,8 +95,8 @@
     accSelect = new IconSelect("accessory");
     accSelect.refresh(populateIcons("images/accessory/", 20));
 
-    accSelect = new IconSelect("pet");
-    accSelect.refresh(populateIcons("images/pet/", 6));
+    petSelect = new IconSelect("pet");
+    petSelect.refresh(populateIcons("images/pet/", 6));
 
     document.getElementById('skin').addEventListener('changed', function (e) {
         skinInput.value = skinSelect.getSelectedValue();
