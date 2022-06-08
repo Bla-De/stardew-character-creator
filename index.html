@@ -1,7 +1,12 @@
 <html>
-  <head>
-      <title>Stardew Valley Character Creator</title>
-  </head>
+<head>
+    <title>Stardew Valley Character Creator</title>
+
+    <link rel="stylesheet" type="text/css" href="css/lib/control/iconselect.css">
+    <script type="text/javascript" src="lib/control/iconselect.js"></script>
+
+    <script type="text/javascript" src="lib/iscroll.js"></script>
+</head>
   <body>
     <div style="display: flex">
       <div id="test" style="width: 256px">
@@ -15,28 +20,119 @@
         <canvas id="accessory_canvas" width="256" height="256" style="position: absolute"></canvas>
       </div>
       <div id="inputs" style="flex-grow: 1; padding: 25px">
-        <label for="eye_col">Eye color</label>
-        <input name="eye_col" id="eye_col" type="color" value="#7a4434">
-        <label for="hair_col">Hair color</label>
-        <input name="hair_col" id="hair_col" type="color" value="#c15b32">
-        <label for="pant_col">Pants color</label>
-        <input name="pant_col" id="pant_col" type="color" value="#2e55b7">
-        <label for="skin">Skin</label>
-        <input type="number" name="skin" id="skin" value="1" min="1" max="24" oninput="checkValue(this);">
-        <label for="hair">Hair</label>
-        <input type="number" name="hair" id="hair" value="1" min="1" max="74" oninput="checkValue(this);">
-        <label for="shirt">Shirt</label>
-        <input type="number" name="shirt" id="shirt" value="1" min="1" max="112" oninput="checkValue(this);">
-        <label for="pant">Pants</label>
-        <input type="number" name="pant" id="pant" value="1" min="1" max="4" oninput="checkValue(this);">
-        <label for="accessory">Accessory</label>
-        <input type="number" name="accessory" id="accessory" value="1" min="1" max="20" oninput="checkValue(this);">
-        <button id="copy">Copy to clipboard</button>
-        <p><a href="https://github.com/robopossum/stardew-character-creator">Source</a></p>
-        <p><a href="https://github.com/robopossum/stardew-character-creator/issues">Submit a bug</a></p>
+		  <label for="version">Version</label>
+		  <input type="radio" name="version" id="1.5" value="1.5" checked="checked" onchange="changeVersion();">1.5</input>
+		  <input type="radio" name="version" id="1.4" value="1.4" onchange="changeVersion();">1.4</input>
+		  <br />
+          <label for="eye_col">Eye color</label>
+          <input name="eye_col" id="eye_col" type="color" value="#7a4434">
+          <label for="hair_col">Hair color</label>
+          <input name="hair_col" id="hair_col" type="color" value="#c15b32">
+          <label for="pant_col">Pants color</label>
+          <input name="pant_col" id="pant_col" type="color" value="#2e55b7">
+          <br />
+          <label for="skin">Skin</label>
+          <div id="skin"></div>
+          <input type="number" name="skinInput" id="skinInput" value="1" min="1" max="24" oninput="checkValue(this);">
+          <br />
+          <label for="hair">Hair</label>
+          <div id="hair"></div>
+          <input type="number" name="hairInput" id="hairInput" value="1" min="1" max="74" oninput="checkValue(this);">
+          <br />
+          <label for="shirt">Shirt</label>
+          <div id="shirt"></div>
+          <input type="number" name="shirtInput" id="shirtInput" value="1" min="1" max="112" oninput="checkValue(this);">
+          <br />
+          <label for="pants">Pants</label>
+          <div id="pants"></div>
+          <input type="number" name="pantsInput" id="pantsInput" value="1" min="1" max="4" oninput="checkValue(this);">
+          <br />
+          <label for="accessory">Accessory</label>
+          <div id="accessory"></div>
+          <input type="number" name="accessoryInput" id="accessoryInput" value="1" min="1" max="20" oninput="checkValue(this);">
+          <br />
+          <label for="pet">Pet</label>
+          <div id="pet"></div>
+          <input type="number" name="petInput" id="petInput" value="1" min="1" max="6" oninput="checkValue(this);">
+          <br />
+          <button id="copy">Copy to clipboard</button>
+          <p><a href="https://github.com/robopossum/stardew-character-creator">Source</a></p>
+          <p><a href="https://github.com/robopossum/stardew-character-creator/issues">Submit a bug</a></p>
       </div>
     </div>
 <script>
+
+
+    var skinSelect;
+    var hairSelect;
+    var shirtSelect;
+    var pantsSelect;
+    var accSelect;
+	var petSelect;
+
+    var skinInput;
+    var hairInput;
+    var shirtInput;
+    var pantsInput;
+    var accInput;
+	var petInput;
+
+    skinInput = document.getElementById("skinInput");
+    hairInput = document.getElementById("hairInput");
+    shirtInput = document.getElementById("shirtInput");
+    pantsInput = document.getElementById("pantsInput");
+    accInput = document.getElementById("accessoryInput");
+    petInput = document.getElementById("petInput");
+	
+    skinSelect = new IconSelect("skin");
+    hairSelect = new IconSelect("hair");
+    shirtSelect = new IconSelect("shirt");
+    pantsSelect = new IconSelect("pants");
+    accSelect = new IconSelect("accessory");
+    petSelect = new IconSelect("pet");
+	
+	skinSelect.refresh(populateIcons("images/skin/", 24));
+	
+	hairSelect.refresh(populateIcons("images/hair/", 74));
+
+	shirtSelect.refresh(populateIcons("images/shirt/", 112));
+
+	pantsSelect.refresh(populateIcons("images/pants/", 4));
+
+	accSelect.refresh(populateIcons("images/accessory/", 20));
+
+	petSelect.refresh(populateIcons("images/pet/", 6));
+
+    document.getElementById('skin').addEventListener('changed', function (e) {
+        skinInput.value = skinSelect.getSelectedValue();
+        skinInput.dispatchEvent(new Event("change"))
+    });
+
+    document.getElementById('hair').addEventListener('changed', function (e) {
+        hairInput.value = hairSelect.getSelectedValue();
+        hairInput.dispatchEvent(new Event("change"))
+    });
+
+    document.getElementById('shirt').addEventListener('changed', function (e) {
+        shirtInput.value = shirtSelect.getSelectedValue();
+        shirtInput.dispatchEvent(new Event("change"))
+    });
+
+    document.getElementById('pants').addEventListener('changed', function (e) {
+        pantsInput.value = pantsSelect.getSelectedValue();
+        pantsInput.dispatchEvent(new Event("change"))
+    });
+
+    document.getElementById('accessory').addEventListener('changed', function (e) {
+        accInput.value = accSelect.getSelectedValue();
+        accInput.dispatchEvent(new Event("change"))
+    });
+
+    document.getElementById('pet').addEventListener('changed', function (e) {
+        petInput.value = petSelect.getSelectedValue();
+        petInput.dispatchEvent(new Event("change"))
+    });
+
 var male_base = new Image();
 male_base.crossOrigin = 'anonymous';
 male_base.src = './farmer_base.png';
@@ -69,11 +165,11 @@ skin.onload = function () {
   skinCtx.drawImage(skin, 0, 0);
 };
 var skIndex = 0;
-document.getElementById('skin').addEventListener('change', (e) => {
+document.getElementById('skinInput').addEventListener('change', (e) => {
   const imgData = skinCtx.getImageData(0, 0, skinCanvas.width, skinCanvas.height);
   const data = imgData.data;
   const prevOffset = skIndex * 12;
-  skIndex = e.target.value - 1;
+    skIndex = e.target.value - 1;
   const newOffset = skIndex * 12;
   for (var i = 0; i < 12; i += 4) {
     replaceColor(
@@ -103,14 +199,14 @@ pants.onload = function () {
 };
 document.getElementById('pant_col').addEventListener('change', (e) => {
   pantsCtx.clearRect(0, 0, 256, 256);
-  const index = document.getElementById('pant').value - 1;
+    const index = document.getElementById('pantsInput').value - 1;
   const xOffset = index * 192;
   pantsCtx.drawImage(pants, xOffset, 0, 16, 32, 64, 0, 128, 256);
   tint(pantsCtx, e.target.value);
 });
-document.getElementById('pant').addEventListener('change', (e) => {
+    document.getElementById('pantsInput').addEventListener('change', (e) => {
   pantsCtx.clearRect(0, 0, 256, 256);
-  const index = e.target.value - 1;
+    const index = e.target.value - 1;
   const xOffset = index * 192;
   pantsCtx.drawImage(pants, xOffset, 0, 16, 32, 64, 0, 128, 256);
   tint(pantsCtx, document.getElementById('pant_col').value);
@@ -128,9 +224,9 @@ shirt.onload = function () {
   shirtCtx.drawImage(shirt, 0, 0, 8, 8, 96, 120, 64, 64);
 };
 var shirtCols = [[142, 31, 12], [112, 23, 24], [74, 12, 6]];
-document.getElementById('shirt').addEventListener('change', (e) => {
+document.getElementById('shirtInput').addEventListener('change', (e) => {
   shirtCtx.clearRect(0, 0, 256, 256);
-  const index = e.target.value - 1;
+    const index = e.target.value - 1;
   const xOffset = (index % 16) * 8;
   const yOffset = parseInt(index / 16) * 32;
   shirtCtx.drawImage(shirt, xOffset, yOffset, 8, 8, 96, 120, 64, 64);
@@ -193,7 +289,7 @@ hair.onload = function () {
 document.getElementById('hair_col').addEventListener('change', (e) => {
   hairCtx.clearRect(0, 0, 256, 256);
   var fancy = false;
-  var index = document.getElementById('hair').value - 1;
+    var index = document.getElementById('hairInput').value - 1;
   if (index > 55) {
     index = index - 56;
     fancy = true;
@@ -203,10 +299,10 @@ document.getElementById('hair_col').addEventListener('change', (e) => {
   hairCtx.drawImage(fancy ? hairfancy : hair, xOffset, yOffset, 16, 32, 64, fancy ? 0 : 8, 128, 256);
   tint(hairCtx, e.target.value);
 });
-document.getElementById('hair').addEventListener('change', (e) => {
+document.getElementById('hairInput').addEventListener('change', (e) => {
   hairCtx.clearRect(0, 0, 256, 256);
   var fancy = false;
-  var index = e.target.value - 1;
+    var index = e.target.value - 1;
   if (index > 55) {
     index = index - 56;
     fancy = true;
@@ -225,9 +321,9 @@ accessoryCtx.imageSmoothingEnabled = false;
 accessoryCtx.mozImageSmoothingEnabled = false;
 accessoryCtx.webkitImageSmoothingEnabled = false;
 accessoryCtx.msImageSmoothingEnabled = false;
-document.getElementById('accessory').addEventListener('change', (e) => {
+document.getElementById('accessoryInput').addEventListener('change', (e) => {
   accessoryCtx.clearRect(0, 0, 256, 256);
-  const index = e.target.value - 2;
+    const index = e.target.value - 2;
   if (index < 0) {
     return;
   }
@@ -241,11 +337,11 @@ document.getElementById('accessory').addEventListener('change', (e) => {
 
 document.getElementById('copy').addEventListener('click', () => {
   const vals = [
-    document.getElementById('skin').value,
-    document.getElementById('hair').value,
-    document.getElementById('shirt').value,
-    document.getElementById('pant').value,
-    document.getElementById('accessory').value
+      skinInput.value,
+      hairInput.value,
+      shirtInput.value,
+      pantsInput.value,
+      accInput.value
   ];
   const eye_col = document.getElementById('eye_col').value;
   vals.push(...rgb2hsv(
@@ -265,7 +361,7 @@ document.getElementById('copy').addEventListener('click', () => {
     parseInt("0x" + pant_col.slice(3,5)) / 255,
     parseInt("0x" + pant_col.slice(5,7)) / 255
   ));
-  vals.push(1);
+  vals.push(petInput.value);
   navigator.clipboard.writeText(vals.join());
 });
 
@@ -320,7 +416,29 @@ function checkValue(sender) {
     } else if (value < min) {
         sender.value = min;
     }
+	
+	
 }
+
+    function populateIcons(filePath,number) {
+        var icons = [];
+        for (i = 0; i < number; i++) {
+            icons.push({ 'iconFilePath': filePath + (i + 1).toString() + '.png', 'iconValue': (i + 1).toString() });
+        }
+
+        return icons;
+    }
+
+   function changeVersion() {
+		
+		if (document.getElementById("1.5").checked){
+			hairSelect.setSelectedIndex(0);
+			hairSelect.refresh(populateIcons("images/hair/", 74));
+		}else{
+			hairSelect.setSelectedIndex(0);
+			hairSelect.refresh(populateIcons("images/hair/", 56));
+		}
+    }
 
 
 </script>
