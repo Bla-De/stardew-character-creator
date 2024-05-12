@@ -1142,7 +1142,7 @@ var app = function () {
                 function Q(e) { t[14](e) } void 0 !== t[6] && (K.value = t[6]), w = new Zt({ props: K }), _.push((() => L(w, "value", J)));
                 let Z = { label: "Pants Color" };
                 function tt(e) { t[15](e) } void 0 !== t[5] && (Z.value = t[5]), C = new re({ props: Z }), _.push((() => L(C, "value", Q)));
-                let et = { label: "Accessory", max: 20 };
+                let et = { label: "Accessory", max: 31 };
                 return void 0 !== t[7] && (et.value = t[7]), P = new Zt({ props: et }), _.push((() => L(P, "value", tt))), {
                     c() { e = d("div"), q(r.$$.fragment), a = y(), q(i.$$.fragment), s = y(), q(l.$$.fragment), h = y(), q(g.$$.fragment), b = y(), q($.$$.fragment), S = y(), q(w.$$.fragment), x = y(), q(C.$$.fragment), O = y(), q(P.$$.fragment), v(e, "class", "svelte-i2ij6c") }, m(t, n) { c(t, e, n), U(r, e, null), u(e, a), U(i, e, null), u(e, s), U(l, e, null), u(e, h), U(g, e, null), u(e, b), U($, e, null), u(e, S), U(w, e, null), u(e, x), U(C, e, null), u(e, O), U(P, e, null), A = !0 }, p(t, [e]) {
                         const a = {};
